@@ -19,7 +19,7 @@ use Spryker\Zed\ProductReview\Dependency\ProductReviewEvents;
  * @method \Spryker\Zed\ProductReviewStorage\Business\ProductReviewStorageFacadeInterface getFacade()
  * @method \Spryker\Zed\ProductReviewStorage\Communication\ProductReviewStorageCommunicationFactory getFactory()
  */
-class ProductReviewEventResourcePlugin extends AbstractPlugin implements EventResourceQueryContainerPluginInterface
+class ProductReviewEventResourceQueryContainerPlugin extends AbstractPlugin implements EventResourceQueryContainerPluginInterface
 {
     /**
      * Specification:
