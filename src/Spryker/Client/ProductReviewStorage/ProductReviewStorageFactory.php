@@ -16,7 +16,7 @@ class ProductReviewStorageFactory extends AbstractFactory
     /**
      * @return \Spryker\Client\ProductReviewStorage\Storage\ProductAbstractReviewStorageReaderInterface
      */
-    public function createProductConcreteImageStorageReader()
+    public function createProductAbstractReviewStorageReader()
     {
         return new ProductAbstractReviewStorageReader($this->getStorageClient(), $this->createProductReviewStorageKeyGenerator());
     }

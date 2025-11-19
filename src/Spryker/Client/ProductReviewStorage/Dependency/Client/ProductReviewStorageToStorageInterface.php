@@ -15,4 +15,11 @@ interface ProductReviewStorageToStorageInterface
      * @return mixed
      */
     public function get($key);
+
+    /**
+     * @param array<string> $keys
+     *
+     * @return array<string, mixed>
+     */
+    public function getMulti(array $keys): array;
 }

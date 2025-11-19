@@ -7,6 +7,7 @@
 
 namespace Spryker\Client\ProductReviewStorage\Storage;
 
+use ArrayObject;
 use Generated\Shared\Transfer\ProductReviewStorageTransfer;
 use Spryker\Client\ProductReviewStorage\Dependency\Client\ProductReviewStorageToStorageInterface;
 use Spryker\Shared\ProductReviewStorage\ProductReviewStorageConfig;
@@ -48,21 +49,59 @@ class ProductAbstractReviewStorageReader implements ProductAbstractReviewStorage
     }
 
     /**
+     * @param array<int> $idProductAbstracts
+     *
+     * @return \ArrayObject<int, \Generated\Shared\Transfer\ProductReviewStorageTransfer>
+     */
+    public function findProductAbstractReviewBulk(array $idProductAbstracts): ArrayObject
+    {
+        $keys = [];
+        foreach ($idProductAbstracts as $idProductAbstract) {
+            $keys[] = $this->productReviewStorageKeyGenerator->generateKey(ProductReviewStorageConfig::PRODUCT_ABSTRACT_REVIEW_RESOURCE_NAME, $idProductAbstract);
+        }
+
+        return $this->findProductReviewProductStorageTransferBulk($keys);
+    }
+
+    /**
      * @param string $key
      *
      * @return \Generated\Shared\Transfer\ProductReviewStorageTransfer|null
      */
     protected function findProductReviewProductStorageTransfer($key)
     {
-        $imageData = $this->storageClient->get($key);
+        $reviewData = $this->storageClient->get($key);
 
-        if (!$imageData) {
+        if (!$reviewData) {
             return null;
         }
 
-        $ProductReviewStorageTransfer = new ProductReviewStorageTransfer();
-        $ProductReviewStorageTransfer->fromArray($imageData, true);
+        $productReviewStorageTransfer = new ProductReviewStorageTransfer();
+        $productReviewStorageTransfer->fromArray($reviewData, true);
 
-        return $ProductReviewStorageTransfer;
+        return $productReviewStorageTransfer;
+    }
+
+    /**
+     * @param array<string> $keys
+     *
+     * @return \ArrayObject<int, \Generated\Shared\Transfer\ProductReviewStorageTransfer>
+     */
+    public function findProductReviewProductStorageTransferBulk(array $keys): ArrayObject
+    {
+        $data = $this->storageClient->getMulti($keys);
+
+        $productReviewStorageTransfers = new ArrayObject();
+        foreach ($data as $value) {
+            if (!$value) {
+                continue;
+            }
+
+            $productReviewStorageTransfer = new ProductReviewStorageTransfer();
+            $productReviewStorageTransfer->fromArray(json_decode($value, true), true);
+            $productReviewStorageTransfers->append($productReviewStorageTransfer);
+        }
+
+        return $productReviewStorageTransfers;
     }
 }

@@ -7,6 +7,7 @@
 
 namespace Spryker\Client\ProductReviewStorage;
 
+use ArrayObject;
 use Spryker\Client\Kernel\AbstractClient;
 
 /**
@@ -26,7 +27,23 @@ class ProductReviewStorageClient extends AbstractClient implements ProductReview
     public function findProductAbstractReview($idProductAbstract)
     {
         return $this->getFactory()
-            ->createProductConcreteImageStorageReader()
+            ->createProductAbstractReviewStorageReader()
             ->findProductAbstractReview($idProductAbstract);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param array<int> $idProductAbstracts
+     *
+     * @return \ArrayObject<int, \Generated\Shared\Transfer\ProductReviewStorageTransfer>
+     */
+    public function findProductAbstractReviewBulk(array $idProductAbstracts): ArrayObject
+    {
+        return $this->getFactory()
+            ->createProductAbstractReviewStorageReader()
+            ->findProductAbstractReviewBulk($idProductAbstracts);
     }
 }

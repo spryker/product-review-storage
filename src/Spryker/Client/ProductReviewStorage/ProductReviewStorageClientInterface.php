@@ -7,6 +7,8 @@
 
 namespace Spryker\Client\ProductReviewStorage;
 
+use ArrayObject;
+
 /**
  * @method \Spryker\Client\ProductReviewStorage\ProductReviewStorageFactory getFactory()
  */
@@ -23,4 +25,16 @@ interface ProductReviewStorageClientInterface
      * @return \Generated\Shared\Transfer\ProductReviewStorageTransfer|null
      */
     public function findProductAbstractReview($idProductAbstract);
+
+    /**
+     * Specification:
+     * - Return product review storage data by product abstract ids.
+     *
+     * @api
+     *
+     * @param array<int> $idProductAbstracts
+     *
+     * @return \ArrayObject<int, \Generated\Shared\Transfer\ProductReviewStorageTransfer>
+     */
+    public function findProductAbstractReviewBulk(array $idProductAbstracts): ArrayObject;
 }
