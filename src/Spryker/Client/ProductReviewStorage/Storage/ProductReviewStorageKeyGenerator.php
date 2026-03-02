@@ -23,9 +23,6 @@ class ProductReviewStorageKeyGenerator implements ProductReviewStorageKeyGenerat
      */
     protected static $storageKeyBuilders = [];
 
-    /**
-     * @param \Spryker\Client\ProductReviewStorage\Dependency\Service\ProductReviewStorageToSynchronizationServiceInterface $synchronizationService
-     */
     public function __construct(ProductReviewStorageToSynchronizationServiceInterface $synchronizationService)
     {
         $this->synchronizationService = $synchronizationService;
@@ -46,11 +43,6 @@ class ProductReviewStorageKeyGenerator implements ProductReviewStorageKeyGenerat
         return $this->getStorageKeyBuilder($resourceName)->generateKey($synchronizationDataTransfer);
     }
 
-    /**
-     * @param string $resourceName
-     *
-     * @return \Spryker\Service\Synchronization\Dependency\Plugin\SynchronizationKeyGeneratorPluginInterface
-     */
     protected function getStorageKeyBuilder(string $resourceName): SynchronizationKeyGeneratorPluginInterface
     {
         if (!isset(static::$storageKeyBuilders[$resourceName])) {

@@ -24,10 +24,6 @@ class ProductAbstractReviewStorageReader implements ProductAbstractReviewStorage
      */
     protected $productReviewStorageKeyGenerator;
 
-    /**
-     * @param \Spryker\Client\ProductReviewStorage\Dependency\Client\ProductReviewStorageToStorageInterface $storageClient
-     * @param \Spryker\Client\ProductReviewStorage\Storage\ProductReviewStorageKeyGeneratorInterface $productReviewStorageKeyGenerator
-     */
     public function __construct(
         ProductReviewStorageToStorageInterface $storageClient,
         ProductReviewStorageKeyGeneratorInterface $productReviewStorageKeyGenerator

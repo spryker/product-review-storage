@@ -46,9 +46,6 @@ class ProductReviewStorageListenerTest extends Unit
      */
     protected $productReviewTransfer;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -65,9 +62,6 @@ class ProductReviewStorageListenerTest extends Unit
         $this->productReviewTransfer = $this->getProductReviewFacade()->updateProductReviewStatus($productReviewTransferToUpdate);
     }
 
-    /**
-     * @return void
-     */
     public function testProductReviewPublishStorageListenerStoreData(): void
     {
         SpyProductAbstractReviewStorageQuery::create()->filterByFkProductAbstract($this->productReviewTransfer->getFkProductAbstract())->delete();
@@ -85,9 +79,6 @@ class ProductReviewStorageListenerTest extends Unit
         $this->assertProductReviewStorage($beforeCount);
     }
 
-    /**
-     * @return void
-     */
     public function testProductReviewStorageListenerStoreData(): void
     {
         SpyProductAbstractReviewStorageQuery::create()->filterByFkProductAbstract($this->productReviewTransfer->getFkProductAbstract())->delete();
@@ -107,9 +98,6 @@ class ProductReviewStorageListenerTest extends Unit
         $this->assertProductReviewStorage($beforeCount);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductReviewStorage\Business\ProductReviewStorageFacade
-     */
     protected function getProductReviewStorageFacade(): ProductReviewStorageFacade
     {
         $factory = new ProductReviewStorageBusinessFactory();
@@ -121,11 +109,6 @@ class ProductReviewStorageListenerTest extends Unit
         return $facade;
     }
 
-    /**
-     * @param int $beforeCount
-     *
-     * @return void
-     */
     protected function assertProductReviewStorage(int $beforeCount): void
     {
         $productSetStorageCount = SpyProductAbstractReviewStorageQuery::create()->count();
@@ -136,9 +119,6 @@ class ProductReviewStorageListenerTest extends Unit
         $this->assertSame(1, (int)$data['review_count']);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductReview\Business\ProductReviewFacadeInterface
-     */
     protected function getProductReviewFacade(): ProductReviewFacadeInterface
     {
         return $this->tester->getLocator()->productReview()->facade();

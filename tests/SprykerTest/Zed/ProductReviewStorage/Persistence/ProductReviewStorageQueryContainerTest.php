@@ -62,9 +62,6 @@ class ProductReviewStorageQueryContainerTest extends Unit
      */
     protected $productAbstractTransfer2;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -80,9 +77,6 @@ class ProductReviewStorageQueryContainerTest extends Unit
         $this->productAbstractTransfer2 = $this->tester->haveProductAbstract();
     }
 
-    /**
-     * @return void
-     */
     public function testQueryProductReviewsByIdProductAbstractsReturnsCorrectData(): void
     {
         // Arrange
@@ -127,9 +121,6 @@ class ProductReviewStorageQueryContainerTest extends Unit
         $this->assertTrue($productAbstract2RatingAverage->equals($result[$this->productAbstractTransfer2->getIdProductAbstract()][ProductPayloadTransfer::AVERAGE_RATING]));
     }
 
-    /**
-     * @return void
-     */
     public function testQueryProductReviewsByIdsReturnsCorrectData(): void
     {
         // Arrange
