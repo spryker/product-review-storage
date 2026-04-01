@@ -40,4 +40,14 @@ class ProductReviewStorageConfig extends AbstractBundleConfig
      * @var string
      */
     public const PRODUCT_ABSTRACT_REVIEW_RESOURCE_NAME = 'product_abstract_review';
+
+    /**
+     * Specification:
+     * - Queue name used for product review storage publish events.
+     *
+     * @api
+     *
+     * @var string
+     */
+    public const string PUBLISH_PRODUCT_REVIEW_STORAGE_QUEUE = 'publish.product_review_storage';
 }
